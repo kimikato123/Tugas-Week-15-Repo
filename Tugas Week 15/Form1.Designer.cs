@@ -91,6 +91,7 @@
             this.checkBoxminuman.TabIndex = 5;
             this.checkBoxminuman.Text = "Minuman";
             this.checkBoxminuman.UseVisualStyleBackColor = true;
+            this.checkBoxminuman.CheckedChanged += new System.EventHandler(this.checkBoxminuman_CheckedChanged);
             // 
             // radioButtonmakanan
             // 

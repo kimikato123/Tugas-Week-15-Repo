@@ -16,83 +16,90 @@ namespace Tugas_Week_15
         {
             InitializeComponent();
         }
-        public string[] makanan = new string[] { "mie Instan", "Telor", "Roti", "Keju", "Daging giling" };
+        public string[] makanan = new string[] { "Mie Instan", "Telor", "Roti ", "Keju", "Daging Giling" };
         public string[] minuman = new string[] { "Susu Sapi", "Kopi", "Teh", "Bir"};
         public string[] makanan1 = new string[200];
         public string[] minuman1 = new string[200];
         public int countermakanan = 0;
         public int counterminuman = 0;
-        
+        public bool tes1 = false;
+        public bool tes2 = false;
+        public bool tes3 = false;
+        public bool tes4 = false;
+
         public void buttoninput_Click(object sender, EventArgs e)
         {
             if (textBoxnama.Text == "")
             {
                 MessageBox.Show("tolong isi nama item");
             }
-            else 
+            else
             {
-                if (radioButtonmakanan.Checked == true)
+                for (int i = 0; i < 4; i++)
                 {
-                    for (int i = 0; i < 5; i++)
+                    if (textBoxnama.Text == minuman[i])
                     {
-                        if (textBoxnama.Text != makanan[i])
-                        {
-                            for (int j = 0; j <= countermakanan; j++)
-                            {
-                                if (textBoxnama.Text != makanan1[j])
-                                {
-                                    listBoxkiri.Items.Add(textBoxnama.Text);
-                                    makanan1[countermakanan] = textBoxnama.Text;
-                                    countermakanan++;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("data gagal diinputkan");
-                                    textBoxnama.Text = "";
-                                    radioButtonmakanan.Checked = false;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("data gagal diinputkan");
-                            textBoxnama.Text = "";
-                            radioButtonmakanan.Checked = false;
-                        }
+                        tes1 = true;
+                    }
+                    else
+                    {
+                       
                     }
                 }
-                else if (radioButtonminuman.Checked == true)
+                for (int j = 0; j <= counterminuman; j++)
                 {
-                    for (int i = 0; i < 4; i++)
+
+                    if (textBoxnama.Text == minuman1[j])
                     {
-                        if (textBoxnama.Text != minuman[i])
-                        {
-                            for (int j = 0; j <= counterminuman; j++)
-                            {
-                                if (textBoxnama.Text != minuman1[j])
-                                {
-                                    listBoxkiri.Items.Add(textBoxnama.Text);
-                                    minuman1[counterminuman] = textBoxnama.Text;
-                                    counterminuman++;
-                                }
-                                else
-                                {
-                                    MessageBox.Show("data gagal diinputkan");
-                                    textBoxnama.Text = "";
-                                    radioButtonminuman.Checked = false;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("data gagal diinputkan");
-                            textBoxnama.Text = "";
-                            radioButtonminuman.Checked = false;
-                        }
+                        tes2 = true;
+                    }
+                    else
+                    {
+                        
+                    }
+                }
+                for (int k = 0; k < 5; k++)
+                {
+
+                    if (textBoxnama.Text == makanan[k])
+                    {
+                        tes3 = true;
+                    }
+                    else
+                    {                   
+
+                    }
+                }
+                for (int l = 0; l <= countermakanan; l++)
+                {
+                    if (textBoxnama.Text == makanan1[l])
+                    {
+                        tes4 = true;
+                    }
+                    else
+                    {
+                        
                     }
                 }
             }
+            if (tes1 == false && tes2 == false && tes3 == false && tes4 == false)
+            {
+                if (radioButtonmakanan.Checked == true)
+                {
+                    listBoxkiri.Items.Add(textBoxnama.Text);
+                    makanan1[countermakanan] = textBoxnama.Text;
+                    countermakanan++;
+                }
+                if (radioButtonminuman.Checked == true)
+                {
+                    listBoxkiri.Items.Add(textBoxnama.Text);
+                    minuman1[counterminuman] = textBoxnama.Text;
+                    counterminuman++;
+                }
+               
+            }
         }
+
 
         private void buttonpanah_Click(object sender, EventArgs e)
         {
@@ -126,7 +133,53 @@ namespace Tugas_Week_15
 
         private void checkBoxmakanan_CheckedChanged(object sender, EventArgs e)
         {
-           
+            if(checkBoxmakanan.Checked == true)
+            {
+                for (int i = 0; i < listBoxkiri.Items.Count; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        if (listBoxkiri.Items[i].ToString() == makanan[j])
+                        {
+                            listBoxkiri.SetSelected(i, true);
+                        }
+                        else
+                        {
+                            for (int k = 0; k < countermakanan; k++)
+                            {
+                                if (listBoxkiri.Items[i].ToString() == makanan1[k])
+                                {
+                                    listBoxkiri.SetSelected(i, true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < listBoxkiri.Items.Count; i++)
+                {
+                    for (int j = 0; j < 5; j++)
+                    {
+                        if (listBoxkiri.Items[i].ToString() == makanan[j])
+                        {
+                            listBoxkiri.SetSelected(i, false);
+                        }
+                        else
+                        {
+                            for (int k = 0; k < countermakanan; k++)
+                            {
+                                if (listBoxkiri.Items[i].ToString() == makanan1[k])
+                                {
+                                    listBoxkiri.SetSelected(i, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
 
         private void buttonsilang_Click(object sender, EventArgs e)
@@ -138,6 +191,57 @@ namespace Tugas_Week_15
                     listBoxkanan.Items.Remove(listBoxkanan.SelectedItems[0]);
                 }
             }
+        }
+
+        private void checkBoxminuman_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBoxminuman.Checked == true)
+            {
+                for (int i = 0; i < listBoxkiri.Items.Count; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (listBoxkiri.Items[i].ToString() == minuman[j])
+                        {
+                            listBoxkiri.SetSelected(i, true);
+                        }
+                        else
+                        {
+                            for (int k = 0; k < countermakanan; k++)
+                            {
+                                if (listBoxkiri.Items[i].ToString() == minuman1[k])
+                                {
+                                    listBoxkiri.SetSelected(i, true);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < listBoxkiri.Items.Count; i++)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (listBoxkiri.Items[i].ToString() == minuman[j])
+                        {
+                            listBoxkiri.SetSelected(i, false);
+                        }
+                        else
+                        {
+                            for (int k = 0; k < countermakanan; k++)
+                            {
+                                if (listBoxkiri.Items[i].ToString() == minuman1[k])
+                                {
+                                    listBoxkiri.SetSelected(i, false);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+           
         }
     }
 }
